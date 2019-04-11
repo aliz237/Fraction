@@ -12,14 +12,14 @@ struct Bad_frac{
 inline void error(const char* err_name){ throw Bad_frac(err_name);}
 
 class Fraction{
-  int a,b;
+  double a,b;
 
-  int gcd(int a, int b);
-  void simplify (int& a, int& b);
+  double gcd(double a, double b);
+  void simplify (double& a, double& b);
   
 public:
 
-  Fraction (int a=0, int b=1);
+  Fraction (double a=0, double b=1);
   Fraction reciprocal () const;  
   std::ostream& print(std::ostream& o) const;
   Fraction& operator - ();
@@ -40,6 +40,8 @@ public:
   bool operator >  (const Fraction& rhs) const {
     return (this->a * rhs.b) > (this->b * rhs.a);
   }
+
+  double eval (){ return a / b; }
 };
 
 Fraction operator + (const Fraction& x, const Fraction& y);

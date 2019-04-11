@@ -9,10 +9,10 @@ int main(){
 
   // simple test to approximate geometric sum 2/3 + (2/3)^2 + (2/3)^3 + ...
   // Can't choose large N, it quickly overflows
-  constexpr int N = 10;
+  constexpr int N = 20;
   std::vector<Fraction> v(N);
   Fraction r(2,3);
-  Fraction sum;
+  Fraction sum = r;
 
   // fill up the vector with a decreasing sequence of fractions (2/3)^n
   v[0] = r;
@@ -22,7 +22,7 @@ int main(){
     sum += v[i];  
   }
 
-  cout <<"\nsum: " << sum << " should be close to:" << (2.0/3) / (1- 2.0/3) << "\n";
+  cout <<"\nsum: " << sum << " which actually is: " << sum.eval() << " should be close to:" << (2.0/3) / (1- 2.0/3) << "\n";
 
   assert(v[1] > v[2]);
   assert(v[2] < v[1]);

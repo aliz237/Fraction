@@ -2,10 +2,10 @@
 #include <ostream>
 
 
-int Fraction :: gcd(int a, int b){
+double Fraction :: gcd(double a, double b){
   // replace this with the fastest
   // possible algorithm for gcd
-  a = abs(a);
+  a = a<0 ? -a : a;
   // b is always > 0
   while (a != b){
     if (a > b)
@@ -16,13 +16,13 @@ int Fraction :: gcd(int a, int b){
   return a;
 }
   
-void Fraction :: simplify (int& a, int& b){
-  int d = gcd(a,b);
+void Fraction :: simplify (double& a, double& b){
+  double d = gcd(a,b);
   a /= d;
   b /= d;
 }
 
-Fraction :: Fraction (int a, int b){
+Fraction :: Fraction (double a, double b){
   if (!b) error("Construction failed! Denominator is 0.\n");
 
   // Always put the negative sign in the numerator
@@ -72,11 +72,7 @@ Fraction Fraction :: reciprocal () const {
 }
   
 std::ostream& Fraction :: print(std::ostream& o) const {
-  if (a % b)
-    o << a << "/" << b;
-  else
-    o << a/b;
-  return o;
+  return o << a << "/" << b;
 }
 
 Fraction operator + (const Fraction& x, const Fraction& y){
